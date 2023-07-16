@@ -2,17 +2,24 @@ import React from "react";
 import ChatIcon from "../../assets/img/icon-chat.png";
 import MoneyIcon from "../../assets/img/icon-money.png";
 import SecurityIcon from "../../assets/img/icon-security.png";
+const width = window.innerWidth;
+const mobile = width <= 500;
 
 const Main = () => {
   return (
     <div
       style={{
         display: "flex",
-        flexDirection: "row",
+        flexDirection: mobile ? "column" : "row",
         maxWidth: 1350,
         justifyContent: "space-between",
         marginTop: 40,
-        margin: "0 auto",
+        margin: "auto",
+        width: "100%",
+        alignItems: "center",
+        gap: 8,
+        paddingTop: 16,
+        paddingBottom: 16,
       }}
     >
       <Card

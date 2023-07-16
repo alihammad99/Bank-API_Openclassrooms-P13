@@ -25,7 +25,7 @@ export const styles = {
       display: "flex",
       flexDirection: "row",
       alignItems: "center",
-      border: "2px solid #b9b9b9",
+      border: "2px solid #e9e9f4",
       padding: 4,
       width: 242,
       height: 32,

@@ -81,7 +81,7 @@ const styles = {
     padding: 8,
     backgroundColor: "#fff",
     color: "#000",
-    border: "2px solid #aeaeae",
+    border: "2px solid #e9e9f4",
     borderRadius: 2,
     outline: "none",
   },

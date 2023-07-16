@@ -2,11 +2,13 @@ import { useState } from "react";
 import FeatherIcon from "feather-icons-react";
 import generateRandomTransactions from "../../utils/transactions";
 
+const width = window.innerWidth;
+const mobile = width <= 500;
+
 const Cards = () => {
   const transactions = generateRandomTransactions().map((item, index) => (
-    <RenderCard item={item} index={index} />
+    <RenderCard key={index} item={item} index={index} />
   ));
-  console.log(transactions);
 
   return (
     <div style={styles.container}>
@@ -31,20 +33,36 @@ const RenderCard = ({ item, index }) => {
         ...styles.card.container,
         height: opened ? "auto" : 34,
         position: "relative",
+        cursor: "pointer",
       }}
       onClick={() => setOpened(!opened)}
     >
       {/* Top */}
-      <div style={{ position: "absolute", top: 32 }}>
-        <FeatherIcon icon={opened ? "arrow-up" : "arrow-down"} />
+      <div style={{ position: "absolute", top: mobile ? 16 : 32 }}>
+        <FeatherIcon
+          icon={opened ? "arrow-up" : "arrow-down"}
+          size={mobile ? "16" : "24"}
+        />
       </div>
       <div style={styles.card.topBox}>
-        <h2 style={{ ...styles.card.text, minWidth: 150 }}>{item.date}</h2>
-        <h2 style={{ ...styles.card.text, minWidth: 180 }}>
+        <h2 style={{ ...styles.card.text, minWidth: mobile ? 100 : 150 }}>
+          {item.date}
+        </h2>
+        <h2 style={{ ...styles.card.text, minWidth: mobile ? 100 : 180 }}>
           {item.description}
         </h2>
-        <h2 style={{ ...styles.card.text, minWidth: 30 }}>{item.amount}</h2>
-        <h2 style={{ ...styles.card.text, minWidth: 90 }}>{item.balance}</h2>
+        <h2 style={{ ...styles.card.text, minWidth: mobile ? 20 : 30 }}>
+          ${" "}
+          {item.amount.toLocaleString("en-US", {
+            useGrouping: true,
+          })}
+        </h2>
+        <h2 style={{ ...styles.card.text, minWidth: mobile ? 60 : 90 }}>
+          ${" "}
+          {item.balance.toLocaleString("en-US", {
+            useGrouping: true,
+          })}
+        </h2>
       </div>
       {/* Bottom */}
       <div style={styles.bottomBox}>
@@ -75,31 +93,34 @@ const styles = {
   card: {
     container: {
       backgroundColor: "#fff",
-      border: "1px solid #000",
+      border: "4px solid #e9e9f4",
       overflow: "hidden",
-      width: "100%",
-      padding: 24,
+      width: mobile ? "94%" : "100%",
+      padding: mobile ? 6 : 24,
     },
     topBox: {
       display: "flex",
       flexDirection: "row",
       alignItems: "center",
-      marginLeft: 80,
+      marginLeft: mobile ? 30 : 80,
       justifyContent: "space-between",
     },
 
-    text: { color: "#000", fontSize: 16, minWidth: 100, textAlign: "left" },
+    text: {
+      color: "#000",
+      fontSize: mobile ? 12 : 16,
+      minWidth: 100,
+      textAlign: "left",
+    },
   },
-  bottomBox: { marginLeft: 60 },
+  bottomBox: { marginLeft: mobile ? 32 : 80 },
   labels: {
     display: "flex",
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "space-between",
     overflow: "hidden",
-    // width: "100%",
-    // padding: 24,
-    marginLeft: 150,
-    // marginRight: 20,
+    marginLeft: mobile ? 20 : 150,
+    width: mobile ? "90%" : "100%",
   },
 };
