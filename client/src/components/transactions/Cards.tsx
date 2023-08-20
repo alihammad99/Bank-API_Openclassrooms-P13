@@ -15,14 +15,16 @@ const Cards = () => {
       <div
         style={{
           ...styles.labels,
-          marginLeft: mobile ? 20 : 150,
-          width: mobile ? "90%" : "100%",
+          marginLeft: mobile ? 20 : 100,
+          width: mobile ? "90%" : "96%",
         }}
       >
-        <p>Date</p>
-        <p>Description</p>
-        <p>Amount</p>
-        <p>Balance</p>
+        <p style={!mobile ? { transform: "translateX(6px)" } : {}}>Date</p>
+        <p style={!mobile ? { transform: "translateX(40px)" } : {}}>
+          Description
+        </p>
+        <p style={!mobile ? { transform: "translateX(55px)" } : {}}>Amount</p>
+        <p style={!mobile ? { transform: "translateX(-55px)" } : {}}>Balance</p>
       </div>
       {transactions}
     </div>

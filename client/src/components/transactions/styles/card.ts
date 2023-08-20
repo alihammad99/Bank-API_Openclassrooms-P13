@@ -4,6 +4,8 @@ export const styles: { [key: string]: CSSProperties } = {
     backgroundColor: "#fff",
     border: "4px solid #e9e9f4",
     overflow: "hidden",
+    position: "relative",
+    cursor: "pointer",
   },
   topBox: {
     display: "flex",

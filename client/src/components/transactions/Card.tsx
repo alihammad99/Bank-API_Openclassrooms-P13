@@ -3,9 +3,17 @@ import FeatherIcon from "feather-icons-react";
 import { styles } from "./styles/card";
 
 interface CardProps {
-  item: string;
-  mobile: string;
-  index: string;
+  item: {
+    date: string;
+    description: string;
+    amount: number;
+    balance: number;
+    transactionType: string;
+    category: string;
+    notes: string;
+  };
+  mobile: boolean;
+  index: number;
 }
 
 const Card: React.FC<CardProps> = ({ item, mobile, index }) => {
@@ -19,8 +27,6 @@ const Card: React.FC<CardProps> = ({ item, mobile, index }) => {
         width: mobile ? "94%" : "100%",
         padding: mobile ? 6 : 24,
         height: opened ? "auto" : 34,
-        position: "relative",
-        cursor: "pointer",
       }}
       onClick={() => setOpened(!opened)}
     >

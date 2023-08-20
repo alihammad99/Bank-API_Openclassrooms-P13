@@ -10,24 +10,16 @@ import {
 import { login } from "../../api";
 import FeatherIcon from "feather-icons-react";
 import { styles } from "./styles";
+import { inputStyles } from "./styles/input";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
 interface LoginFormProps {
   loading: boolean;
   error: string | null;
-  loginRequest: () => void;
-  loginSuccess: (token: string) => void;
-  loginFailure: (error: string) => void;
 }
 
-const LoginForm: React.FC<LoginFormProps> = ({
-  loading,
-  error,
-  loginRequest,
-  loginSuccess,
-  loginFailure,
-}) => {
+const LoginForm: React.FC<LoginFormProps> = ({ loading, error }) => {
   const [email, setEmail] = useState("tony@stark.com");
   const [password, setPassword] = useState("password123");
   const [rememberMe, setRememberMe] = useState(false);
@@ -60,47 +52,46 @@ const LoginForm: React.FC<LoginFormProps> = ({
         <FeatherIcon icon="user" />
         <h2>Sign In</h2>
       </div>
-      <div style={styles.input.container}>
+      <div style={inputStyles.container}>
         <label>Username</label>
-        <div style={styles.input.box}>
+        <div style={inputStyles.box}>
           <input
             placeholder="ali@example.com"
             type="email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
-            style={styles.input.username}
+            style={inputStyles.username}
           />
         </div>
       </div>
-      <div style={styles.input.container}>
+      <div style={inputStyles.container}>
         <label>Password</label>
-        <div style={styles.input.box}>
+        <div style={inputStyles.box}>
           <input
             placeholder="Your Password"
             type={showPassword ? "text" : "password"}
             value={password}
             onChange={(e) => setPassword(e.target.value)}
-            style={styles.input.password}
+            style={inputStyles.password}
           />
           <button
-            style={styles.input.eye}
+            type="button"
+            style={inputStyles.eye}
             onClick={() => setShowPassword((value) => !value)}
           >
-            {
-              <FeatherIcon
-                style={styles.input.icon}
-                icon={showPassword ? "eye-off" : "eye"}
-              />
-            }
+            <FeatherIcon
+              style={inputStyles.icon}
+              icon={showPassword ? "eye-off" : "eye"}
+            />
           </button>
         </div>
       </div>
-      <div style={styles.checkBox.container}>
+      <div style={inputStyles.checkBox}>
         <input
           type="checkbox"
           checked={rememberMe}
           onChange={(e) => setRememberMe(e.target.checked)}
-          style={styles.checkBox.input}
+          style={inputStyles.input}
         />
         <label>Remember me</label>
       </div>
