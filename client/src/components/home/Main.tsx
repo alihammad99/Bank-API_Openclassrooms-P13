@@ -1,26 +1,15 @@
-import React from "react";
 import ChatIcon from "../../assets/img/icon-chat.png";
 import MoneyIcon from "../../assets/img/icon-money.png";
 import SecurityIcon from "../../assets/img/icon-security.png";
+import { styles } from "./styles/main";
+import Card from "./Card";
 const width = window.innerWidth;
 const mobile = width <= 500;
 
 const Main = () => {
   return (
     <div
-      style={{
-        display: "flex",
-        flexDirection: mobile ? "column" : "row",
-        maxWidth: 1350,
-        justifyContent: "space-between",
-        marginTop: 40,
-        margin: "auto",
-        width: "100%",
-        alignItems: "center",
-        gap: 8,
-        paddingTop: 16,
-        paddingBottom: 16,
-      }}
+      style={{ ...styles.container, flexDirection: mobile ? "column" : "row" }}
     >
       <Card
         icon={ChatIcon}
@@ -42,36 +31,3 @@ const Main = () => {
 };
 
 export default Main;
-
-const Card = ({ icon, title, text }) => {
-  return (
-    <div
-      style={{
-        width: "30%",
-        display: "flex",
-        flexDirection: "column",
-        alignItems: "center",
-        textAlign: "center",
-        justifyContent: "center",
-        gap: 2,
-      }}
-    >
-      <div
-        style={{
-          backgroundColor: "#fff",
-          padding: 16,
-          borderWidth: 10,
-          borderRadius: "50%",
-          borderColor: "#5cd18f",
-          borderStyle: "solid",
-          width: 100,
-          height: 100,
-        }}
-      >
-        <img src={icon} width="100" />
-      </div>
-      <h3>{title}</h3>
-      <p>{text}</p>
-    </div>
-  );
-};

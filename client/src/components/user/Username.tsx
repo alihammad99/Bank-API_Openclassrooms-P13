@@ -1,9 +1,15 @@
+import React from "react";
 import { useEffect, useState } from "react";
 import { getUser, updateUser } from "../../api";
-import generateRandomTransactions from "../../utils/transactions";
+import { styles } from "./styles/username";
+
+interface UserData {
+  firstName: string;
+  lastName: string;
+}
 
 const Username = () => {
-  const [userData, setUserData] = useState(null); // Initialize with null instead of {}
+  const [userData, setUserData] = useState<UserData | null>(null);
 
   const fetchData = async () => {
     try {
@@ -13,25 +19,32 @@ const Username = () => {
       console.log(error);
     }
   };
+
   useEffect(() => {
     fetchData();
   }, []);
 
-  const handleFirstNameChange = (e) => {
-    setUserData((prevUserData) => ({
-      ...prevUserData,
-      firstName: e.target.value,
-    }));
+  const handleFirstNameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setUserData((prevUserData) => {
+      if (!prevUserData) return prevUserData;
+      return {
+        ...prevUserData,
+        firstName: e.target.value,
+      };
+    });
   };
 
-  const handleLastNameChange = (e) => {
-    setUserData((prevUserData) => ({
-      ...prevUserData,
-      lastName: e.target.value,
-    }));
+  const handleLastNameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setUserData((prevUserData) => {
+      if (!prevUserData) return prevUserData;
+      return {
+        ...prevUserData,
+        lastName: e.target.value,
+      };
+    });
   };
 
-  if (userData === null) return <h4>Loading ...</h4>; // Render loading state when userData is null
+  if (userData === null) return <h4>Loading ...</h4>;
 
   return (
     <div style={styles.container}>
@@ -52,14 +65,14 @@ const Username = () => {
           onChange={handleLastNameChange}
         />
       </div>
-      <div style={styles.button.container}>
+      <div style={styles.buttonBox}>
         <button
-          style={styles.button.save}
+          style={styles.saveButton}
           onClick={() => updateUser(userData.firstName, userData.lastName)}
         >
           Save
         </button>
-        <button style={styles.button.cancel} onClick={fetchData}>
+        <button style={styles.cancelButton} onClick={fetchData}>
           Cancel
         </button>
       </div>
@@ -68,40 +81,3 @@ const Username = () => {
 };
 
 export default Username;
-
-const styles = {
-  container: {
-    display: "flex",
-    flexDirection: "column",
-    gap: 8,
-    alignItems: "center",
-    justifyContent: "center",
-  },
-  input: {
-    padding: 8,
-    backgroundColor: "#fff",
-    color: "#000",
-    border: "2px solid #e9e9f4",
-    borderRadius: 2,
-    outline: "none",
-  },
-  button: {
-    container: { display: "flex", flexDirection: "row", gap: 8 },
-    save: {
-      backgroundColor: "#fff",
-      border: "2px solid #5f2dd3",
-      borderRadius: 0,
-      color: "#5f2dd3",
-      width: 124,
-      outline: "none",
-    },
-    cancel: {
-      backgroundColor: "#fff",
-      border: "2px solid #5f2dd3",
-      borderRadius: 0,
-      color: "#5f2dd3",
-      width: 124,
-      outline: "none",
-    },
-  },
-};

@@ -1,6 +1,6 @@
-import { useState } from "react";
 import ConnectedLoginForm from "../../components/auth";
 import { Navigate } from "react-router-dom";
+import { styles } from "./styles";
 
 const LoginPage = () => {
   const token =
@@ -8,17 +8,8 @@ const LoginPage = () => {
 
   if (token) return <Navigate to="/" replace={true} />;
   return (
-    <div
-      style={{
-        width: "100%",
-        height: "80vh",
-        backgroundColor: "#12002B",
-        position: "relative",
-      }}
-    >
+    <div style={styles.container}>
       <ConnectedLoginForm />
-
-      {/* <LoginCard /> */}
     </div>
   );
 };

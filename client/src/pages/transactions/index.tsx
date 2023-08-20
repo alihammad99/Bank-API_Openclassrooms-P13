@@ -1,12 +1,12 @@
-import React from "react";
 import Header from "../../components/transactions/Header";
 import Cards from "../../components/transactions/Cards";
 import { useLocation } from "react-router-dom";
+import { styles } from "./styles";
 
 const TransactionsPage = () => {
-  let { state } = useLocation();
+  const { state } = useLocation();
   return (
-    <div style={{ margin: "auto", backgroundColor: "#e9e9f4" }}>
+    <div style={styles.container}>
       <Header state={state} />
       <Cards />
     </div>

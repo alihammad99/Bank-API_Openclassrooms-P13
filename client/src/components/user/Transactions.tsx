@@ -1,5 +1,6 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import Transaction from "./Transaction";
+import { styles } from "./styles/transactions";
 
 const categories = [
   "Food",
@@ -9,8 +10,6 @@ const categories = [
   "Education",
   "Service",
 ];
-const width = window.innerWidth;
-const mobile = width <= 500;
 
 const Transactions = () => {
   const [mockTransitions, setMockTransitions] = useState([
@@ -44,81 +43,11 @@ const Transactions = () => {
     },
   ]);
 
-  const updateCategory = (transactionId, categoryIndex) => {
-    const data = mockTransitions.filter((item) => item.id !== transactionId);
-    const transaction = mockTransitions.find(
-      (item) => item.id === transactionId
-    );
-    if (transaction) {
-      return setMockTransitions(() => [
-        ...data,
-        { ...transaction, category: categories[categoryIndex] },
-      ]);
-    } else {
-      return alert("transaction is not found");
-    }
-  };
-
   return (
-    <div
-      style={{
-        maxWidth: 1350,
-        margin: "0 auto",
-        display: "flex",
-        flexDirection: "column",
-        gap: 32,
-        paddingTop: 64,
-        paddingBottom: 64,
-      }}
-    >
+    <div style={styles.container}>
       {mockTransitions.map((item) => (
         <Transaction key={item.id} id={item.id} balance={item.balance} />
       ))}
-    </div>
-  );
-};
-
-const Transaction = ({ id, balance }) => {
-  return (
-    <div
-      style={{
-        display: "flex",
-        flexDirection: mobile ? "column" : "row",
-        alignItems: mobile ? "flex-start" : "center",
-        justifyContent: "space-between",
-        padding: mobile ? "16px 24px" : "8px 24px",
-        border: "3px solid #e9e9f4",
-        backgroundColor: "#fff",
-        gap: 24,
-      }}
-    >
-      {/* Left */}
-      <div>
-        <p>Argent Banck Checking (x{id})</p>
-        <h2>
-          ${" "}
-          {balance.toLocaleString("en-US", {
-            useGrouping: true,
-          })}
-        </h2>
-        <p>Available Balance</p>
-      </div>
-
-      {/* Right */}
-      <div>
-        <Link
-          to="/transactions"
-          state={{ id, balance }}
-          style={{
-            padding: 16,
-            backgroundColor: "#4d12e2",
-            color: "#fff",
-            borderRadius: 0,
-          }}
-        >
-          View transactions
-        </Link>
-      </div>
     </div>
   );
 };

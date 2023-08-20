@@ -1,4 +1,12 @@
-const Header = ({ state }) => {
+import { styles } from "./styles/header";
+interface HeaderProps {
+  state: {
+    id: number;
+    balance: number;
+  };
+}
+
+const Header: React.FC<HeaderProps> = ({ state }) => {
   return (
     <div style={styles.container}>
       <p style={styles.subtitle}>Argent Bank Checking (x{state.id})</p>
@@ -14,22 +22,3 @@ const Header = ({ state }) => {
 };
 
 export default Header;
-
-const styles = {
-  container: {
-    backgroundColor: "#fff",
-    display: "flex",
-    flexDirection: "column",
-    alignItems: "center",
-    padding: 40,
-    border: "8px solid #e9e9f4",
-  },
-  subtitle: { color: "#000", fontSize: 18, textAlign: "center" },
-  price: {
-    color: "#000",
-    fontSize: 48,
-    textAlign: "center",
-    fontWeight: "bold",
-    lineHeight: 0,
-  },
-};

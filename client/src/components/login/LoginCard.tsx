@@ -1,26 +1,10 @@
 import { useState } from "react";
 import FeatherIcon from "feather-icons-react";
+import { styles } from "./styles";
 const LoginCard = () => {
   const [showPassword, setShowPassword] = useState(false);
   return (
-    <div
-      style={{
-        width: 280,
-        height: 360,
-        backgroundColor: "#fff",
-        padding: 16,
-        margin: "auto",
-        position: "absolute",
-        top: "12%",
-        left: "40%",
-        display: "flex",
-        flexDirection: "column",
-        alignItems: "center",
-        justifyContent: "center",
-        gap: 16,
-        textAlign: "center",
-      }}
-    >
+    <div style={styles.container}>
       {/* Header */}
       <div>
         <FeatherIcon icon="user" />
@@ -29,122 +13,45 @@ const LoginCard = () => {
 
       {/* Form */}
 
-      <div
-        style={{
-          display: "flex",
-          flexDirection: "column",
-          alignItems: "flex-start",
-        }}
-      >
+      <div style={styles.form}>
         <label>Username</label>
-        <div
-          style={{
-            display: "flex",
-            flexDirection: "row",
-            alignItems: "center",
-            border: "2px solid #e9e9f4",
-            padding: 4,
-            width: 242,
-            height: 32,
-          }}
-        >
+        <div style={styles.inputBox}>
           <input
             placeholder="ali@example.com"
             type="text"
-            style={{
-              backgroundColor: "#fff",
-              color: "#000",
-              border: 0,
-              height: "100%",
-              width: "100%",
-              outline: "none",
-            }}
+            style={styles.input}
           />
         </div>
       </div>
-      <div
-        style={{
-          display: "flex",
-          flexDirection: "column",
-          alignItems: "flex-start",
-        }}
-      >
+      <div style={styles.column}>
         <label>Password</label>
-        <div
-          style={{
-            display: "flex",
-            flexDirection: "row",
-            alignItems: "center",
-            border: "2px solid #e9e9f4",
-            padding: 4,
-            width: 242,
-            height: 32,
-          }}
-        >
+        <div style={styles.inputBox}>
           <input
             placeholder="Your Password"
             type={showPassword ? "text" : "password"}
-            style={{
-              backgroundColor: "#fff",
-              color: "#000",
-              border: 0,
-              height: "100%",
-              width: "100%",
-              outline: "none",
-            }}
+            style={styles.input}
           />
           <button
-            style={{
-              background: "none",
-              borderWidth: 0,
-              outline: "none",
-              padding: 2,
-              margin: 2,
-            }}
+            style={styles.eye}
             onClick={() => setShowPassword((value) => !value)}
           >
             {
               <FeatherIcon
-                style={{ color: "#000000", height: 16 }}
+                style={styles.eyeIcon}
                 icon={showPassword ? "eye-off" : "eye"}
               />
             }
           </button>
         </div>
       </div>
-      <div
-        style={{
-          display: "flex",
-          flexDirection: "row",
-          alignItems: "center",
-          width: 258,
-        }}
-      >
-        <input
-          type="checkbox"
-          style={{
-            background: "none",
-            height: 16,
-            width: 16,
-            color: "#ffffff",
-            border: 0,
-          }}
-        />
+      <div style={styles.rememberBox}>
+        <input type="checkbox" style={styles.rememberInput} />
         <label>Remember me</label>
       </div>
 
       {/* Button */}
       <div>
-        <button
-          style={{
-            backgroundColor: "#18aa6b",
-            padding: 12,
-            width: 250,
-            borderRadius: 0,
-          }}
-        >
-          Sign in
-        </button>
+        <button style={styles.signIn}>Sign in</button>
       </div>
     </div>
   );
